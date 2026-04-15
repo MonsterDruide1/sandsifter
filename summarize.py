@@ -119,7 +119,7 @@ disassemblers = {
                     " -D -b binary -mi386 -Mintel --no-show-raw-insn {0}"
                     "| tr A-Z a-z"           # lowercase
                     "| grep '0:' -A 99"      # crop header
-                    "| sed '/.byte /Q'"      # stop at invalid byte
+                    "| sed '/\\.byte /Q'"      # stop at invalid byte
                     "| sed '/(bad)/Q'"       # stop at invalid byte
                     "| sed 's/.*:\\s*//'"    # crop instructions
                     "| awk 'ORS=\" \"'"      # join to one line
@@ -129,7 +129,7 @@ disassemblers = {
                     " -D -b binary -mi386 -Mintel --insn-width=16 {0}"
                     "| tr A-Z a-z"           # lowercase
                     "| grep '0:' -A 99"      # crop header
-                    "| sed '/.byte /Q'"      # stop at invalid byte
+                    "| sed '/\\.byte /Q'"      # stop at invalid byte
                     "| sed '/(bad)/Q'"       # stop at invalid byte
                     "| sed 's/.*:\\s*\\(\\([0-9a-f][0-9a-f] \\)*\\).*/\\1/'" # crop raw
                     "| tr -d '\\n '"         # join to one line and remove spaces
@@ -140,7 +140,7 @@ disassemblers = {
                     " -D -b binary -mi386 -Mx86-64 -Mintel --no-show-raw-insn {0}"
                     "| tr A-Z a-z"           # lowercase
                     "| grep '0:' -A 99"      # crop header
-                    "| sed '/.byte /Q'"      # stop at invalid byte
+                    "| sed '/\\.byte /Q'"    # stop at invalid byte
                     "| sed '/(bad)/Q'"       # stop at invalid byte
                     "| sed 's/.*:\\s*//'"    # crop instructions
                     "| awk 'ORS=\" \"'"      # join to one line
@@ -150,7 +150,7 @@ disassemblers = {
                     " -D -b binary -mi386 -Mx86-64 -Mintel --insn-width=16 {0}"
                     "| tr A-Z a-z"           # lowercase
                     "| grep '0:' -A 99"      # crop header
-                    "| sed '/.byte /Q'"      # stop at invalid byte
+                    "| sed '/\\.byte /Q'"    # stop at invalid byte
                     "| sed '/(bad)/Q'"       # stop at invalid byte
                     "| sed 's/.*:\\s*\\(\\([0-9a-f][0-9a-f] \\)*\\).*/\\1/'" # crop raw
                     "| tr -d '\\n '"         # join to one line and remove spaces
