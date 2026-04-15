@@ -744,6 +744,9 @@ void inject(int insn_size)
 	/* could probably fork here to avoid risk of destroying the controlling process */
 	/* only really comes up in random injection, just roll the dice for now */
 
+	// mark all general-purpose non-volatile registers as used to encourage the compiler to save/restore them
+	asm volatile ("" ::: "rbx", "r12", "r13", "r14", "r15");
+
 	int i;
 	int preamble_length=(&preamble_end-&preamble_start);
 	static bool have_state=false;
