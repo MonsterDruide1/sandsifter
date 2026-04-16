@@ -305,6 +305,7 @@ def disassemble(disassembler, bitness, data):
     if supported[disassembler] and disassemblers[disassembler][bitness]:
         temp_file = tempfile.NamedTemporaryFile()
         temp_file.write(data)
+        temp_file.flush()
 
         # disassemble
         result, errors = \
