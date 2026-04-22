@@ -1070,6 +1070,12 @@ bool move_next_instruction(void)
 		i++;
 	}
 
+	/* early exit */
+	/* check if we are at, or past, the end instruction */
+	if (memcmp(inj.i.bytes, search_range.end.bytes, sizeof(inj.i.bytes))>=0) {
+		return false;
+	}
+
 	if (prefix_count()>config.max_prefix || 
 			(!config.allow_dup_prefix && has_dup_prefix())) {
 		switch (output) {
@@ -1086,12 +1092,6 @@ bool move_next_instruction(void)
 				assert(0);
 		}
 		return move_next_instruction();
-	}
-
-	/* early exit */
-	/* check if we are at, or past, the end instruction */
-	if (memcmp(inj.i.bytes, search_range.end.bytes, sizeof(inj.i.bytes))>=0) {
-		return false;
 	}
 
 	/* search based exit */
